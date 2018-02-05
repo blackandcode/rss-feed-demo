@@ -5,7 +5,7 @@
    "private": true,
    "scripts": {
       "start:dev": "cross-env NODE_ENV=development nodemon ./bin/www",
-      "start": "nodemon ./bin/www",
+      "start": "node ./bin/www",
       "dev": "parcel watch ./public/index.html --public-url ./",
       "build:public": "parcel build ./public/index.html --public-url ./"
    },
