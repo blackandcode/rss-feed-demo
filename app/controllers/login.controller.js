@@ -7,13 +7,22 @@ exports.login = async (req, res, next) => {
 	try {
 		const {username, password} = req.body;
 		const user = await User.findOneByUsername(username);
-		const isAuthenticated = user.authenticate(username, password);
 
-		if (!isAuthenticated) {
-			res.status(304).json({ 
+		if(!user) {
+			return res.status(400).json({ 
 				success: false, 
 				loggedIn: false, 
-				msg: 'Cannot find user with given credentials' 
+				msg: 'username not correct' 
+			});
+		}
+
+		const isAuthenticated = user.authenticate(username, password);
+		console.log(isAuthenticated);
+		if (!isAuthenticated) {
+			res.status(400).json({ 
+				success: false, 
+				loggedIn: false, 
+				msg: 'password not correct' 
 			});
 			return;
 		}
