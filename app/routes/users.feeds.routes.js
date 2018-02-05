@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const userFeeds = require('../controllers/users.feeds.controller');
+const auth = require('../controllers/login.controller')
 
 /* GET home page. */
-router.get('/', userFeeds.getFeeds)
+router.get('/', auth.authenticate, userFeeds.getFeeds)
 
-router.post('/', userFeeds.setFeed);
+router.post('/', auth.authenticate, userFeeds.setFeed);
 
-router.put('/', userFeeds.update);
+router.put('/', auth.authenticate, userFeeds.update);
 
-router.delete('/', userFeeds.remove);
+router.delete('/', auth.authenticate, userFeeds.remove);
 
 module.exports = router;

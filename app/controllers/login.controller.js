@@ -1,6 +1,7 @@
 const UserSchema = require('../models/Users');
 const mongoose = require('mongoose');
 const User = mongoose.model('User', UserSchema);
+const _ = require('lodash');
 
 exports.login = async (req, res, next) => {
 	try {
@@ -32,14 +33,14 @@ exports.login = async (req, res, next) => {
 
 exports.logout = async (req, res, next) => {
 	try {
-		
+
 		if (!req.cookies.userId) {
-			res.status(400).status({ 
+			console.log('now here');	
+			return res.status(400).json({ 
 				success: false, 
 				loggedIn: false,
 				msg: 'User is already logged out'
 			});
-			return;
 		}
 
 		res.clearCookie('userId');
@@ -55,19 +56,18 @@ exports.logout = async (req, res, next) => {
 }
 
 exports.authenticate = async (req, res, next) => {
+	const nonSecurePaths = ['/auth/login', '/auth/logout']
 	try {
-		if (req.path === '/auth/login' || req.path === '/auth//logout' || (req.path === '/user' && req.method === 'POST')) {
-			return next();
-		}
+		// if (_.includes(nonSecurePaths, req.path)) {
+		// 	return next();
+		// }
 	
 		if (!req.cookies.userId) {
-			console.log('here');
 			res.status(401).json({success: false, msg: 'User must be logged in'});
 			return;
 		}
 		next();
 	} catch(err) {
-		console.log(err);
-		return next();
+		return next(err);
 	}
 }

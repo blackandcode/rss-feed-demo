@@ -4,6 +4,6 @@ const auth = require('../controllers/login.controller');
 /* GET home page. */
 router.post('/login', auth.login)
 
-router.post('/logout', auth.logout);
+router.get('/logout', auth.logout);
 
 module.exports = router;

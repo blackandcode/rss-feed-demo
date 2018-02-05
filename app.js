@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const auth = require('./app/controllers/login.controller');
 
 const authentication = require('./app/routes/login.routes');
 const user = require('./app/routes/users.routes');
@@ -35,8 +34,6 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-
-app.all('*', auth.authenticate);
 // routes
 app.use('/user', user);
 app.use('/user-feeds', userFeeds);
