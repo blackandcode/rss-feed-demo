@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userFeeds = require('../controllers/users.feeds.controller');
-const auth = require('../controllers/login.controller')
+const auth = require('../controllers/login.controller');
 
 /* GET home page. */
 router.get('/', auth.authenticate, userFeeds.getFeeds)

@@ -58,6 +58,7 @@ exports.update = async(req, res, next) => {
 exports.remove = async(req, res, next) => {
 	try {
 		const user = await User.findOneAndRemove({_id: req.cookies.userId});
+		res.clearCookie('userId');
 		res.status(200).json({user: user, success: true});
 	} catch(err) {
 		console.log(err);
