@@ -32,7 +32,8 @@ exports.login = async (req, res, next) => {
 			success: true, 
 			loggedIn: true, 
 			userId: user._id, 
-			msg: 'User is successfully logged in' 
+			msg: 'User is successfully logged in',
+			token: 'e64a8ef5-42df-48d8-91f7-d1ef64a843c8'
 		});
 
 	} catch(err) {
