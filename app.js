@@ -27,7 +27,7 @@ mongoose.connect(config.mongo_uri)
 if (!devEnv) app.use(compress())
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(cors());
+// app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,11 +35,24 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+})
+
+app.use(cors({
+    origin: 'http://localhost:3001'
+}));
+
 // routes
 app.use('/user', user);
 app.use('/user-feeds', userFeeds);
 app.use('/auth', authentication);
 app.use('/feeds', feeds);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

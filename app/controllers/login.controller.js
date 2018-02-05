@@ -29,11 +29,18 @@ exports.login = async (req, res, next) => {
 		console.log(user._id);
 		res.cookie('userId', user._id);
 		res.status(200).json({ 
-			success: true, 
-			loggedIn: true, 
-			userId: user._id, 
+			success: true,
+			status: 1,
+			data: {
+                loggedIn: true,
+                id: user._id,
+                name: "Danilo",
+                username: "danilo",
+                token: 'e64a8ef5-42df-48d8-91f7-d1ef64a843c8'
+			},
+
 			msg: 'User is successfully logged in',
-			token: 'e64a8ef5-42df-48d8-91f7-d1ef64a843c8'
+
 		});
 
 	} catch(err) {
