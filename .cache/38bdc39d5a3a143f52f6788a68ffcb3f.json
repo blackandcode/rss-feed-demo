@@ -1,0 +1,1 @@
+{"dependencies":[],"generated":{"js":"console.log('hello world');","map":{"mappings":[{"source":"index.js","original":{"line":1,"column":0},"generated":{"line":1,"column":0}}],"sources":{"index.js":"console.log('hello world');"},"lineCount":1}},"hash":"2e5994a21a26444d6268ccfbe0783b3c","cacheData":{"env":{}}}

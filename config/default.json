@@ -1,0 +1,4 @@
+{
+	"sessionSecret": "devSessionSecret",
+	"mongo_uri": "mongodb://dachko:Danilo123@ds113455.mlab.com:13455/feed-rss"	
+}
