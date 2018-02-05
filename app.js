@@ -6,7 +6,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 
 const authentication = require('./app/routes/login.routes');
 const user = require('./app/routes/users.routes');
@@ -27,6 +27,7 @@ mongoose.connect(config.mongo_uri)
 if (!devEnv) app.use(compress())
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
