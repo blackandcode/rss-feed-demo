@@ -2,7 +2,14 @@ const UserSchema = require('../models/Users');
 const mongoose = require('mongoose');
 const User = mongoose.model('User', UserSchema);
 
-// create a user
+/**
+ * Create a user
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.create = async (req, res, next) => {
 	const user = new User(req.body);
 
@@ -17,7 +24,14 @@ exports.create = async (req, res, next) => {
 	}
 }
 
-// list all users
+/**
+ * List all users
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.list = async (req, res, next) => {
 	try {
 		const users = await User.find({});

@@ -50,6 +50,14 @@ exports.login = async (req, res, next) => {
 	}
 }
 
+/**
+ * Logout the user
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.logout = async (req, res, next) => {
 	try {
 

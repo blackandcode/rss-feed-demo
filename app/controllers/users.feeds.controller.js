@@ -4,7 +4,14 @@ const UserFeed = mongoose.model('UserFeeds', UserSchema);
 const GlobalFeedSchema = require('../models/GlobalFeeds');
 const Feeds = mongoose.model('GlobalFeeds', GlobalFeedSchema);
 
-// get all user feeds
+/**
+ * Get all user feeds
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.getFeeds = async (req, res, next) => {
 	try {
 		const feeds = await UserFeed.find({})
@@ -18,7 +25,13 @@ exports.getFeeds = async (req, res, next) => {
 	}
 }
 
-// create user feeds
+/**
+ * Create user feeds
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.setFeed = async(req, res, next) => {
 	try {
 		req.body.user = req.cookies.userId;
@@ -37,7 +50,14 @@ exports.setFeed = async(req, res, next) => {
 	}
 }
 
-// update user feed
+/**
+ * Update users feed group
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.update = async(req, res, next) => {
 	try {
 		const updatedFeed = await UserFeed.findByIdAndUpdate(req.body.feedId, req.body.feed, {'new': true});
@@ -47,7 +67,14 @@ exports.update = async(req, res, next) => {
 	}
 }
 
-// remove user feed
+/**
+ * Remove user feed group
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.remove = async(req, res, next) => {
 	try {
 		const removedFeed = await UserFeed.findByIdAndRemove(req.body.feedId);
