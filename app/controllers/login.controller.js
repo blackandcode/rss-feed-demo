@@ -3,6 +3,14 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User', UserSchema);
 const _ = require('lodash');
 
+/**
+ * Login user to the system
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.login = async (req, res, next) => {
 	try {
 		const {username, password} = req.body;
@@ -34,8 +42,8 @@ exports.login = async (req, res, next) => {
 			data: {
 				loggedIn: true,
 				id: user._id,
-				name: user._id,
-				username: user._id,
+				name: user.username,
+				username: user.username,
 				token: 'e64a8ef5-42df-48d8-91f7-d1ef64a843c8',
 				type: 'Admin',
 				adminPermissions: [263, 200, 1, 2]
@@ -84,6 +92,14 @@ exports.logout = async (req, res, next) => {
 	}
 }
 
+/**
+ * This is middlware that is applied to the routs so anonymouse user can't access
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.authenticate = async (req, res, next) => {
 	const nonSecurePaths = ['/auth/login', '/auth/logout']
 	try {

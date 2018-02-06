@@ -105,3 +105,34 @@ exports.remove = async(req, res, next) => {
 		return next(err)
 	}
 }
+
+
+// get user by Id
+exports.userById = async (req, res, next) => {
+    try {
+        const id = req.cookies.userId ? req.cookies.userId : null;
+        if (!id) {
+            res.status(400).json({
+                status: 0,
+                message: 'User Not Found!'
+            });
+        }
+
+        const user = await User.findOne({_id: id});
+        res.status(200).json({
+            status: 1,
+            data: {
+                id: user._id,
+                name: user.username,
+                username: user.username,
+                token: 'e64a8ef5-42df-48d8-91f7-d1ef64a843c8',
+                type: 'Admin',
+                adminPermissions: [263, 200, 1, 2]
+            }
+        });
+
+    } catch(err) {
+        console.log(err);
+        return next(err);
+    }
+}
