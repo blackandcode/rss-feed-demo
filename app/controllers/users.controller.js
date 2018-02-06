@@ -43,7 +43,14 @@ exports.list = async (req, res, next) => {
 	}
 }
 
-// get user by Id 
+/**
+ * Get user by Id
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.userById = async (req, res, next) => {
 	try {
 		const id = req.cookies.userId ? req.cookies.userId : null;
@@ -61,7 +68,14 @@ exports.userById = async (req, res, next) => {
 	}
 }
 
-// update the user
+/**
+ * Update the user
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.update = async(req, res, next) => {
 	try {
 		const user = await User.findByIdAndUpdate(req.cookies.userId, req.body, { 'new': true });
@@ -73,7 +87,14 @@ exports.update = async(req, res, next) => {
 	}
 }
 
-// remove the user
+/**
+ * Remove the user
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns {Promise.<*>}
+ */
 exports.remove = async(req, res, next) => {
 	try {
 		const user = await User.findOneAndRemove({_id: req.cookies.userId});
