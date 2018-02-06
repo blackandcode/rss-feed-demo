@@ -23,6 +23,11 @@
    "author": "blackandcode",
    "license": "ISC",
    "dependencies": {
+      "@uirouter/angularjs": "^1.0.14",
+      "angular": "^1.6.9",
+      "autoprefixer": "^7.2.5",
+      "babel-cli": "^6.26.0",
+      "babel-preset-env": "^1.6.1",
       "body-parser": "~1.18.2",
       "compression": "^1.7.1",
       "config": "^1.29.4",
@@ -35,8 +40,10 @@
       "mongoose": "^5.0.3",
       "morgan": "~1.9.0",
       "node-sass": "^4.7.2",
+      "postcss-modules": "^1.1.0",
       "rss-parser": "^3.0.1",
-      "rss-to-json": "^1.0.4"
+      "rss-to-json": "^1.0.4",
+      "trash-cli": "^1.4.0"
    },
    "devDependencies": {
       "cross-env": "^5.1.3"

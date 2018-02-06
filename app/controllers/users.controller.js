@@ -34,7 +34,12 @@ exports.userById = async (req, res, next) => {
 	try {
 		const id = req.cookies.userId ? req.cookies.userId : null;
 		const user = await User.findOne({_id: id});
-		res.status(200).json(user);
+		res.status(200).json({
+			data: {
+				status: true,
+				user: user
+			}
+		});
 
 	} catch(err) {
 		console.log(err);

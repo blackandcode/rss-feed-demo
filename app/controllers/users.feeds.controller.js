@@ -1,6 +1,8 @@
 const UserSchema = require('../models/UserFeeds');
 const mongoose = require('mongoose');
 const UserFeed = mongoose.model('UserFeeds', UserSchema);
+const GlobalFeedSchema = require('../models/GlobalFeeds');
+const Feeds = mongoose.model('GlobalFeeds', GlobalFeedSchema);
 
 // get all user feeds
 exports.getFeeds = async (req, res, next) => {
@@ -20,7 +22,13 @@ exports.getFeeds = async (req, res, next) => {
 exports.setFeed = async(req, res, next) => {
 	try {
 		req.body.user = req.cookies.userId;
-		const feed = new UserFeed(req.body);
+		console.log(req.body)
+		const data = {
+			title: req.body.feed.title,
+			url: req.body.feed.url,
+			user: req.body.user
+		}
+		const feed = new UserFeed(data);
 
 		const userFeed = await feed.save();
 		res.status(200).json({ feed: userFeed, success: true });

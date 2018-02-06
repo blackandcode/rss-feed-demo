@@ -11,6 +11,14 @@ const GlobalFeedSchema = new Schema({
 	createdAt: {
 		type: Date,
 		default: Date.now()
+	},
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	},
+	group: {
+		type: Schema.ObjectId,
+		ref: 'UserFeeds'
 	}
 });
 

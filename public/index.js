@@ -1,1 +1,2 @@
-console.log('hello world');
+import angular from 'angular';
+import uiRouter from '@uirouter/angularjs';

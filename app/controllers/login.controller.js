@@ -32,11 +32,13 @@ exports.login = async (req, res, next) => {
 			success: true,
 			status: 1,
 			data: {
-                loggedIn: true,
-                id: user._id,
-                name: "Danilo",
-                username: "danilo",
-                token: 'e64a8ef5-42df-48d8-91f7-d1ef64a843c8'
+				loggedIn: true,
+				id: user._id,
+				name: user._id,
+				username: user._id,
+				token: 'e64a8ef5-42df-48d8-91f7-d1ef64a843c8',
+				type: 'Admin',
+				adminPermissions: [263, 200, 1, 2]
 			},
 
 			msg: 'User is successfully logged in',
@@ -53,7 +55,8 @@ exports.logout = async (req, res, next) => {
 
 		if (!req.cookies.userId) {
 			console.log('now here');	
-			return res.status(400).json({ 
+			return res.status(400).json({
+				status: 2, 
 				success: false, 
 				loggedIn: false,
 				msg: 'User is already logged out'
@@ -62,6 +65,7 @@ exports.logout = async (req, res, next) => {
 
 		res.clearCookie('userId');
 		res.status(200).json({ 
+			status: 2,
 			success: true, 
 			loggedIn: false,
 			msg: 'User is successfully logged out' 
